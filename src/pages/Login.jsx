@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -57,11 +59,13 @@ const Button = styled.button`
   }
 `;
 
-const Link = styled.a`
-  margin: 5px 0px;
-  font-size: 12px;
+const LinkStyle = styled.a`
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
   text-decoration: underline;
   cursor: pointer;
+  color: black;
 `;
 
 const Error = styled.span`
@@ -96,8 +100,9 @@ const Login = () => {
             CONNEXION
           </Button>
           {error && <Error>Quelque chose s'est mal passé...</Error>}
-          <Link>Mot de passe oublié</Link>
-          <Link>CRÉER UN NOUVEAU COMPTE</Link>
+          <LinkStyle>Mot de passe oublié</LinkStyle>
+          <LinkStyle><Link to="/register" style={{ color: 'black'}}>Créer un nouveau compte</Link></LinkStyle>
+          <LinkStyle><Link to="/" style={{ color: 'black'}}>Acceuil</Link></LinkStyle>
         </Form>
       </Wrapper>
     </Container>

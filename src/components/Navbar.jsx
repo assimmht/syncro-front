@@ -5,9 +5,10 @@ import Badge from '@mui/material/Badge';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { mobile } from "../responsive";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png';
+import { deconnexion } from '../redux/apiCalls';
 
 const Container = styled.div`
   margin-left: 20px;
@@ -131,6 +132,13 @@ const Image = styled.img`
 const Navbar = () => {
   const quantity = useSelector(state=>state.cart.quantity)
   const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    deconnexion(dispatch);
+    console.log("cc");
+  };
   return (
     <Container>
       <Wrapper>
@@ -139,22 +147,22 @@ const Navbar = () => {
               <Image src={logo}/>
             </Link>
           </Div1>
-          <Link to="/login" style={{textDecoration: 0}}>
+          <Link to="/" style={{textDecoration: 0}}>
             <Div2>
                <MenuItem>TOUT NOS PRODUITS</MenuItem>
             </Div2>
           </Link>
-          <Link to="/login" style={{textDecoration: 0}}>
+          <Link to="/" style={{textDecoration: 0}}>
             <Div3>
               <MenuItem>NOS COLLECTIONS</MenuItem>
             </Div3>
           </Link> 
-          <Link to="/login" style={{textDecoration: 0}}>
+          <Link to="/" style={{textDecoration: 0}}>
             <Div4>
              <MenuItem>LES AVENTURES DE SYNCRO</MenuItem>
             </Div4>
           </Link>         
-          <Link to="/login" style={{textDecoration: 0}}>
+          <Link to="/" style={{textDecoration: 0}}>
             <Div5>
               <MenuItem>COMING SOON</MenuItem>
             </Div5>
@@ -165,7 +173,7 @@ const Navbar = () => {
           </SearchContainer>
           <Right>
           { !user ?
-            <Link to="/login" style={{textDecoration: 0}}>
+            <Link to="/login" style={{textDecoration: 0, marginRight: 15}}>
                <Div6>
                  <PersonIcon />
               </Div6>
@@ -175,7 +183,7 @@ const Navbar = () => {
             <Link to="/" style={{textDecoration: 0, color: 'black', marginRight: 10}}>
             <PersonIcon />
             </Link>
-            <Link to="/" style={{textDecoration: 0, color: 'black', marginRight: 10}}>
+            <Link onClick={handleClick} style={{textDecoration: 0, color: 'black', marginRight: 10}}>
              <MenuItem>Déconnexion</MenuItem>
             </Link>
         </Div7>

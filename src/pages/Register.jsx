@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
@@ -54,6 +56,13 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const LinkStyle = styled.p`
+  font-size: 15px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: black;
+`;
+
 const Register = () => {
   return (
     <Container>
@@ -72,6 +81,9 @@ const Register = () => {
           </Agreement>
           <Button>CREATE</Button>
         </Form>
+        <br/>
+        <LinkStyle><Link to="/login" style={{ color: 'black' }}>Se connecter</Link></LinkStyle><br/>
+        <LinkStyle><Link to="/" style={{ color: 'black' }}>Acceuil</Link></LinkStyle>
       </Wrapper>
     </Container>
   );
