@@ -9,13 +9,12 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: auto;
   display: flex;
   position: relative;
   overflow: hidden;
   flex-direction: column;
   align-items: center;
-  ${mobile({ display: "none" })}
 `;
 
 const Wrapper = styled.div`
@@ -28,36 +27,24 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-height: 50%;
+height: auto;
 width: 20%;
 `;
 
-const Desc = styled.p`
+const Desc = styled.div`
   font-size: 30px;
   color: black;
   margin-top: 2.5em;
   margin-bottom: 1.5em;
 `;
 
-const ImageBas = styled.img`
-  width: 100%;
-  object-fit: cover;
-`;
-const ImgBottom = styled.div`
-  width: 60.02%;
-  margin-top: -2.7em;
-`;
-
 const Maps = () => {
   return (
         <Container>
-        <Desc>Nos collections</Desc>
+        <Desc id="collection">Nos collections</Desc>
         <Wrapper>
              <center>
               <ImgContainer>
-                {/* <Image src={japonais}/>
-                <Image src={americain}/>
-                <Image src={japonais}/> */}
                <Link to={`/products/japon`}>
                  <Image src={japonais}/>
                 </Link>
@@ -68,9 +55,6 @@ const Maps = () => {
                  <Image src={japonais}/>
                 </Link>
                </ImgContainer>
-               <ImgBottom>
-                <ImageBas src={basic}/>
-               </ImgBottom>
               </center>
         </Wrapper>
       </Container>

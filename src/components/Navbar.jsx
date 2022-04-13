@@ -6,7 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 import logo from '../images/logo.png';
 import { deconnexion } from '../redux/apiCalls';
 
@@ -19,7 +19,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   ${mobile({ padding: "10px 0px" })}
 `;
 
@@ -74,6 +74,7 @@ const MenuItem = styled.div`
 const Div1 = styled.div`
   display: flex;
   padding: 5px;
+
 `
 
 const Div2 = styled.div`
@@ -137,7 +138,6 @@ const Navbar = () => {
   const handleClick = (e) => {
     e.preventDefault();
     deconnexion(dispatch);
-    console.log("cc");
   };
   return (
     <Container>
@@ -147,26 +147,17 @@ const Navbar = () => {
               <Image src={logo}/>
             </Link>
           </Div1>
-          <Link to="/" style={{textDecoration: 0}}>
+          <br/>
+          <Link to="/#produit" style={{textDecoration: 0}}>
             <Div2>
                <MenuItem>TOUT NOS PRODUITS</MenuItem>
             </Div2>
           </Link>
-          <Link to="/" style={{textDecoration: 0}}>
+          <Link to="/#collection" style={{textDecoration: 0}}>
             <Div3>
               <MenuItem>NOS COLLECTIONS</MenuItem>
             </Div3>
-          </Link> 
-          <Link to="/" style={{textDecoration: 0}}>
-            <Div4>
-             <MenuItem>LES AVENTURES DE SYNCRO</MenuItem>
-            </Div4>
           </Link>         
-          <Link to="/" style={{textDecoration: 0}}>
-            <Div5>
-              <MenuItem>COMING SOON</MenuItem>
-            </Div5>
-          </Link>    
           <SearchContainer>
             <SearchIcon style={{ color: "gray", fontSize: 24, }} />
             <Input placeholder="Search" />

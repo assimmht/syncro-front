@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import logo from '../images/logo.png';
@@ -168,6 +168,10 @@ const Cart = () => {
   const onToken = (token) => {
     setStripeToken(token);
   };
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
 

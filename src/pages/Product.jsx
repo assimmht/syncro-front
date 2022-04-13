@@ -6,10 +6,10 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import React, { useLayoutEffect, useState, useEffect } from 'react'
 
 const Container = styled.div``;
 
@@ -137,6 +137,10 @@ const Product = () => {
     };
     getProduct();
   }, [id]);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const handleQuantity = (type) => {
     if (type === "dec") {

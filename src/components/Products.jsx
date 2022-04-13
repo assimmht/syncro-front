@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { popularProducts } from "../data";
 import Product from "./Product";
 import axios from "axios";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   padding: 20px;
@@ -11,7 +12,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Desc = styled.p`
+const Desc = styled.div`
 font-size: 30px;
 color: black;
 margin-top: 2.5em;
@@ -72,7 +73,7 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <>
     <center>
-    <Desc>Nos derniers produits</Desc>
+    <Desc id="produit">Nos derniers produits</Desc>
   </center>
     <Container>
       {cat

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import React, { useLayoutEffect } from 'react'
 
 const Container = styled.div`
   width: 100vw;
@@ -64,6 +65,9 @@ const LinkStyle = styled.p`
 `;
 
 const Register = () => {
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <Container>
       <Wrapper>

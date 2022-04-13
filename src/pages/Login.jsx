@@ -1,10 +1,11 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import React, { useLayoutEffect, useState } from 'react'
+
 
 const Container = styled.div`
   width: 100vw;
@@ -77,6 +78,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const handleClick = (e) => {
     e.preventDefault();

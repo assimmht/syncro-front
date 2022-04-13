@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from "../requestMethods";
+import React, { useLayoutEffect, useState, useEffect } from 'react'
 
 const Success = () => {
   const location = useLocation();
@@ -10,6 +10,10 @@ const Success = () => {
   const cart = location.state.cart;
   const currentUser = useSelector((state) => state.user.currentUser);
   const [orderId, setOrderId] = useState(null);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   useEffect(() => {
     const createOrder = async () => {
