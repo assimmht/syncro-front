@@ -2,6 +2,10 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from "../requestMethods";
 import React, { useLayoutEffect, useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { Button } from "@mui/material";
 
 const Success = () => {
   const location = useLocation();
@@ -34,20 +38,35 @@ const Success = () => {
   }, [cart, data, currentUser]);
 
   return (
-    <div
+    <div>
+      <Navbar />
+      <div
       style={{
         height: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "whitesmoke"
       }}
     >
+      <p style={{fontSize: "22px", padding: "10px", marginTop: "-250px"}}>
       {orderId
         ? `La commande a été créée avec succès. Votre numéro de commande est ${orderId}`
-        : `Réussi. Votre commande est en préparation...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Aller à la page d'accueil</button>
+        : `Paiement réussi`}
+      </p>
+      <p style={{fontSize: "22px"}}>
+      {orderId
+        ? `La commande a été créée avec succès. Votre numéro de commande est ${orderId}`
+        : `Votre commande est en préparation...`}
+      </p>
+      <Link to="/" style={{textDecoration: 0}}>
+        <Button style={{ marginTop: 20 }} variant="contained">Aller à la page d'accueil</Button>
+      </Link>
     </div>
+    <Footer />
+    </div>
+
   );
 };
 

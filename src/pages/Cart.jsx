@@ -11,7 +11,7 @@ import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import logo from '../images/logo.png';
 
-const KEY = process.env.REACT_APP_STRIPE;
+const KEY = "pk_test_51Jgv29BysI0msYIj9O8T7PHyrLsxec0Gdi1xoFKOg5sEKjIplWquNV44hqqPvws5zAoXjsTF4o4HOaJGzrf1pLhG00eEAGEeZu";
 
 const Container = styled.div``;
 
@@ -158,12 +158,14 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
+  const quantity = useSelector(state=>state.cart.quantity)
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -181,6 +183,7 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: cart.total,
         });
+        console.log('ccc');
         history.push("/success", {
           stripeData: res.data,
           products: cart, });
@@ -197,10 +200,9 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUER VOS ACHATS</TopButton>
           <TopTexts>
-            <TopText>Mon panier(2)</TopText>
+            <TopText>Mon panier({quantity})</TopText>
             <TopText>Mes souhaits (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">PAYER MAINTENANT</TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -245,17 +247,13 @@ const Cart = () => {
               <SummaryItemText>Frais de livraison estimés</SummaryItemText>
               <SummaryItemPrice>$ 5.90</SummaryItemPrice>
             </SummaryItem>
-            {/* <SummaryItem>
-              <SummaryItemText>Remise d'expédition</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
               name="Syncro Shop"
-              image={logo}
+              image="https://i.postimg.cc/B6G97gcM/sw-.png"
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
