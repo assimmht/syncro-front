@@ -46,13 +46,10 @@ const Maps = () => {
              <center>
               <ImgContainer>
                <Link to={`/products/japon`}>
-                 <Image src={japonais}/>
+                 <Image style={{ marginRight: 100 }} src={japonais}/>
                 </Link>
                 <Link to={`/products/usa`}>
                  <Image src={americain}/>
-                </Link>
-                <Link to={`/products/france`}>
-                 <Image src={japonais}/>
                 </Link>
                </ImgContainer>
               </center>
