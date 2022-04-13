@@ -1,4 +1,6 @@
 import { loginFailure, loginStart, loginSuccess, logout } from "./userRedux";
+import { dropCartProduct } from "./cartRedux";
+
 import { publicRequest } from "../requestMethods";
 
 export const login = async (dispatch, user) => {
@@ -13,4 +15,8 @@ export const login = async (dispatch, user) => {
 
 export const deconnexion = (dispatch) => {
   dispatch(logout());
+};
+
+export const dropCart = (dispatch) => {
+  dispatch(dropCartProduct());
 };

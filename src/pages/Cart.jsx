@@ -1,5 +1,5 @@
 import { Add, Remove } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -10,6 +10,7 @@ import { useEffect, useState, useLayoutEffect } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import logo from '../images/logo.png';
+import { dropCart } from "../redux/apiCalls";
 
 const KEY = "pk_test_51Jgv29BysI0msYIj9O8T7PHyrLsxec0Gdi1xoFKOg5sEKjIplWquNV44hqqPvws5zAoXjsTF4o4HOaJGzrf1pLhG00eEAGEeZu";
 
@@ -165,7 +166,8 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const history = useHistory();
-  const quantity = useSelector(state=>state.cart.quantity)
+  const quantity = useSelector(state=>state.cart.quantity);
+  const dispatch = useDispatch();
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -176,14 +178,13 @@ const Cart = () => {
   });
 
   useEffect(() => {
-
     const makeRequest = async () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
           amount: cart.total,
         });
-        console.log('ccc');
+        dropCart(dispatch);
         history.push("/success", {
           stripeData: res.data,
           products: cart, });
@@ -191,6 +192,7 @@ const Cart = () => {
     };
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, history]);
+
   return (
     <Container>
       <Navbar />
